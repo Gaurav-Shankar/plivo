@@ -12,7 +12,11 @@ public class Hooks{
 	public static WebDriver driver;
 	@Before
 	public static void openBrowser() throws MalformedURLException {
-		System.setProperty("webdriver.chrome.driver", "libs//chromedriver");
+		String os = System.getProperty("os.name");
+		if(os.contains("Linux"))
+			System.setProperty("webdriver.chrome.driver", "libs//chromedriver2");
+		else if(os.contains("Mac"))
+			System.setProperty("webdriver.chrome.driver", "libs//chromedriver");
 		driver = new ChromeDriver();
 	}
 	
