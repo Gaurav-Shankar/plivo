@@ -1,4 +1,4 @@
-@TestA
+@DragAndDropUI
 Feature: Plivo - Test
 
   Scenario: Using selenium Automate the below process.

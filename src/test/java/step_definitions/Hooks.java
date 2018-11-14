@@ -14,13 +14,10 @@ public class Hooks{
 	public static void openBrowser() throws MalformedURLException {
 		System.setProperty("webdriver.chrome.driver", "libs//chromedriver");
 		driver = new ChromeDriver();
-		driver.manage().deleteAllCookies();
-		//driver.manage().timeouts().implicitlyWait(arg0, arg1)
-		//driver.manage().window().maximize();
 	}
 	
 	@After
 	public void cloaseBrowserWindow() {
-		//driver.quit();
+		driver.quit();
 	}
 }

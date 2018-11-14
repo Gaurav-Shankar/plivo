@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -28,9 +27,6 @@ public class DragDropUIStepDef {
 		PageFactory.initElements(driver, SendSMSpageObjects.class);
 		PageFactory.initElements(driver, SendEmailPageObjects.class);
 	}
-	
-	@And("^I Click on Explore Investment Ideas for All Weather Strategy$")
-	public void i_click_on_explore_investment_ideas_for_all_weather_strategy() throws Throwable {}
 
 	@When("^Go to QuickFuseApps link$")
     public void go_to_quickfuseapps_link() throws Throwable {
@@ -44,22 +40,19 @@ public class DragDropUIStepDef {
 
     @Then("^I Fill out the Phone Number and text$")
     public void i_fill_out_the_phone_number_and_text() throws Throwable {
-    	SendSMSpageObjects.phoneNumber.sendKeys("1234567890");
-		SendSMSpageObjects.textMessage.get(0).sendKeys("Test Message");
-		Point p = CommonPageObjects.receptor.get(0).getLocation();
-		System.out.println(p.getX() + " " + p.getY());
+    	SendSMSpageObjects.phoneNumber.sendKeys("2131243253435");
+		SendSMSpageObjects.textMessage.get(0).sendKeys("Hello, World!!");
     }
 
     @Then("^I Join all the open output ports of Send an Email to Exit app by dragging$")
     public void i_join_all_the_open_output_ports_of_send_an_email_to_exit_app_by_dragging() throws Throwable {
-    	//Point p = CommonPageObjects.start.get(4).getLocation();
     	((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", CommonPageObjects.start.get(4));
     	actions.dragAndDropBy(CommonPageObjects.basicOptions.get(0),550,400).build().perform();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		actions.dragAndDrop(CommonPageObjects.start.get(4), CommonPageObjects.receptor.get(3)).build().perform();
 		Thread.sleep(1000);
-		actions.dragAndDropBy(CommonPageObjects.basicOptions.get(0),1250,400).build().perform();
-		Thread.sleep(3000);
+		actions.dragAndDropBy(CommonPageObjects.basicOptions.get(0),900,400).build().perform();
+		Thread.sleep(2000);
 		actions.dragAndDrop(CommonPageObjects.start.get(5), CommonPageObjects.receptor.get(4)).build().perform();
 		Thread.sleep(1000);
     }
@@ -88,7 +81,7 @@ public class DragDropUIStepDef {
     public void i_drag_component_send_an_sms_to_the_main_app_page_join_the_line_from_start_acting_as_connector() throws Throwable {
     	actions.dragAndDrop(CommonPageObjects.messagingOptions.get(2), CommonPageObjects.droppableUI).build().perform();
     	commonMethods.waitForClickability(CommonPageObjects.droppedElement.get(1));
-    	//Thread.sleep(3000);
+    	Thread.sleep(2000);
 		actions.dragAndDrop(CommonPageObjects.start.get(1), CommonPageObjects.receptor.get(0)).build().perform();
     }
 
@@ -97,6 +90,15 @@ public class DragDropUIStepDef {
     	actions.dragAndDropBy(CommonPageObjects.messagingOptions.get(1),800,350).build().perform();
 		Thread.sleep(2000);
 		actions.dragAndDrop(CommonPageObjects.start.get(3), CommonPageObjects.receptor.get(1)).build().perform();
+		SendEmailPageObjects.smtpHost.sendKeys("smtp.gmail.com");
+		SendEmailPageObjects.port.sendKeys("465");
+		SendEmailPageObjects.username.sendKeys("abc@gmail.com");
+		SendEmailPageObjects.password.sendKeys("helloworld");
+		SendEmailPageObjects.from.sendKeys("abc@gmail.com");
+		SendEmailPageObjects.to.sendKeys("xyz@gmail.com");
+		SendEmailPageObjects.subject.sendKeys("SMS not sent");
+		SendEmailPageObjects.cc.sendKeys("none@xyz.com");
+		SendSMSpageObjects.textMessage.get(2).sendKeys("SMS to phone number 2131243253435 nt sent");
     }
 
     @And("^I Click on component Basic on left Module and drag Exit App to Sent output port of Sent sms box$")
